@@ -1,0 +1,7 @@
+{
+  "name": "The Fernanda Ximena Awards 2026",
+  "description": "Una landing page interactiva y sistema de gestión para la gala más exclusiva del año. Incluye registro de invitados, dresscode cinematográfico, itinerario y un panel administrativo para votaciones en tiempo real.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
