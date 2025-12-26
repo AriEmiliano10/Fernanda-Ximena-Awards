@@ -1,8 +1,4 @@
 
-import React from 'react';
-import { AwardCategory, ScheduleItem, Guest, GuestStatus, DresscodeCategory } from './types';
-
-// Add missing ADDRESS field used in index.tsx
 export const EVENT_DETAILS = {
   NAME: "The Fernanda Ximena Awards",
   HOST: "HOLLYWOOD NIGHT GALA",
@@ -17,7 +13,13 @@ export const EVENT_DETAILS = {
   RESERVED_CHARACTER: "Glinda (Wicked)"
 };
 
-export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
+export const GUEST_STATUS = {
+  CONFIRMED: 'CONFIRMADO',
+  PENDING: 'PENDIENTE',
+  CHECKED_IN: 'DENTRO'
+};
+
+export const DRESSCODE_CATEGORIES = [
   {
     id: 'classics',
     title: 'Clásicos',
@@ -68,15 +70,12 @@ export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
   }
 ];
 
-// Export GUEST_STATUS mapping for index.tsx compatibility
-export const GUEST_STATUS = GuestStatus;
-
-export const MOCK_GUESTS: Guest[] = [
-  { id: '1', name: 'Julian Casablancas', character: 'The Joker', status: GuestStatus.CONFIRMED, registrationNumber: '001', qrCode: 'QR_001' },
-  { id: '2', name: 'Mia Wallace', character: 'Pulp Fiction', status: GuestStatus.CHECKED_IN, registrationNumber: '002', qrCode: 'QR_002' }
+export const MOCK_GUESTS = [
+  { id: '1', name: 'Julian Casablancas', character: 'The Joker', status: GUEST_STATUS.CONFIRMED, registrationNumber: '001', qrCode: 'QR_001' },
+  { id: '2', name: 'Mia Wallace', character: 'Pulp Fiction', status: GUEST_STATUS.CHECKED_IN, registrationNumber: '002', qrCode: 'QR_002' }
 ];
 
-export const INITIAL_AWARD_CATEGORIES: AwardCategory[] = [
+export const INITIAL_AWARD_CATEGORIES = [
   {
     id: 'cat_1',
     name: 'Mejor Vestuario',
@@ -107,7 +106,7 @@ export const INITIAL_AWARD_CATEGORIES: AwardCategory[] = [
   }
 ];
 
-export const SCHEDULE: ScheduleItem[] = [
+export const SCHEDULE = [
   { time: '13:00', activity: 'Alfombra Roja', description: 'Recepción estelar y sesión fotográfica oficial.' },
   { time: '14:30', activity: 'Banquete de Estrellas', description: 'Comida formal y brindis de apertura.' },
   { time: '16:00', activity: 'Apertura de Votaciones', description: 'Vota por tus favoritos en tiempo real.' },
