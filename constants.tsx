@@ -24,10 +24,13 @@ export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
     description: 'La elegancia atemporal de la era dorada de Hollywood.',
     coverImage: 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&q=80',
     examples: [
-      { character: 'Vito Corleone', movie: 'The Godfather', image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Holly Golightly', movie: 'Breakfast at Tiffany\'s', image: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Charlie Chaplin', movie: 'The Tramp', image: 'https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Marilyn Monroe', movie: 'The Seven Year Itch', image: 'https://images.unsplash.com/photo-1561438774-1730ce2045be?q=80&w=600&auto=format&fit=crop' }
+      // 👇 PEGA TUS LINKS DE IMÁGENES AQUÍ - Categoría CLÁSICOS
+      { character: 'Audrey Hepburn', movie: 'Desayuno con Diamantes', image: 'https://tulink.com/imagen1.jpg' },
+      { character: 'James Dean', movie: 'Rebelde sin Causa', image: 'https://tulink.com/imagen2.jpg' },
+      { character: 'Marilyn Monroe', movie: 'La Tentación Vive Arriba', image: 'https://tulink.com/imagen3.jpg' },
+      { character: 'Vito Corleone', movie: 'El Padrino', image: 'https://tulink.com/imagen4.jpg' },
+      { character: 'Holly Golightly', movie: 'Breakfast at Tiffany\'s', image: 'https://tulink.com/imagen5.jpg' },
+      { character: 'Charlie Chaplin', movie: 'El Vagabundo', image: 'https://tulink.com/imagen6.jpg' }
     ]
   },
   {
@@ -36,10 +39,13 @@ export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
     description: 'Iconos contemporáneos que han marcado la última década.',
     coverImage: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80',
     examples: [
-      { character: 'John Wick', movie: 'John Wick', image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Barbie', movie: 'Barbie', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Mia Wallace', movie: 'Pulp Fiction', image: 'https://images.unsplash.com/photo-1512310604669-443f467a11d9?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Oppenheimer', movie: 'Oppenheimer', image: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=600&auto=format&fit=crop' }
+      // 👇 PEGA TUS LINKS DE IMÁGENES AQUÍ - Categoría MODERNOS
+      { character: 'Barbie', movie: 'Barbie', image: 'https://tulink.com/imagen7.jpg' },
+      { character: 'Ken', movie: 'Barbie', image: 'https://tulink.com/imagen8.jpg' },
+      { character: 'Harley Quinn', movie: 'Escuadrón Suicida', image: 'https://tulink.com/imagen9.jpg' },
+      { character: 'Wednesday Addams', movie: 'Wednesday', image: 'https://tulink.com/imagen10.jpg' },
+      { character: 'Cruella de Vil', movie: 'Cruella', image: 'https://tulink.com/imagen11.jpg' },
+      { character: 'Mia Wallace', movie: 'Pulp Fiction', image: 'https://tulink.com/imagen12.jpg' }
     ]
   },
   {
@@ -48,10 +54,13 @@ export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
     description: 'Viajeros del tiempo, rebeldes galácticos y seres cibernéticos.',
     coverImage: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80',
     examples: [
-      { character: 'Neo', movie: 'The Matrix', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Leeloo', movie: 'The Fifth Element', image: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Darth Vader', movie: 'Star Wars', image: 'https://images.unsplash.com/photo-1546561892-65bf811416b9?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Rick Deckard', movie: 'Blade Runner', image: 'https://images.unsplash.com/photo-1501432377862-3d0432b874ef?q=80&w=600&auto=format&fit=crop' }
+      // 👇 PEGA TUS LINKS DE IMÁGENES AQUÍ - Categoría SCI-FI
+      { character: 'Neo', movie: 'The Matrix', image: 'https://tulink.com/imagen13.jpg' },
+      { character: 'Trinity', movie: 'The Matrix', image: 'https://tulink.com/imagen14.jpg' },
+      { character: 'Leia Organa', movie: 'Star Wars', image: 'https://tulink.com/imagen15.jpg' },
+      { character: 'Darth Vader', movie: 'Star Wars', image: 'https://tulink.com/imagen16.jpg' },
+      { character: 'Leeloo', movie: 'El Quinto Elemento', image: 'https://tulink.com/imagen17.jpg' },
+      { character: 'Furiosa', movie: 'Mad Max', image: 'https://tulink.com/imagen18.jpg' }
     ]
   },
   {
@@ -60,10 +69,13 @@ export const DRESSCODE_CATEGORIES: DresscodeCategory[] = [
     description: 'Magia, capas, hechizos y reinos lejanos.',
     coverImage: 'https://images.unsplash.com/photo-1598449356475-b9f71db7d847?auto=format&fit=crop&q=80',
     examples: [
-      { character: 'Harry Potter', movie: 'Harry Potter', image: 'https://images.unsplash.com/photo-1598153346810-860daa814c4b?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Maleficent', movie: 'Maleficent', image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Gandalf', movie: 'Lord of the Rings', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop' },
-      { character: 'Glinda (RESERVADO)', movie: 'Wicked', image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=600&auto=format&fit=crop' }
+      // 👇 PEGA TUS LINKS DE IMÁGENES AQUÍ - Categoría FANTASÍA
+      { character: 'Harry Potter', movie: 'Harry Potter', image: 'https://tulink.com/imagen19.jpg' },
+      { character: 'Hermione Granger', movie: 'Harry Potter', image: 'https://tulink.com/imagen20.jpg' },
+      { character: 'Elphaba', movie: 'Wicked', image: 'https://tulink.com/imagen21.jpg' },
+      { character: 'Glinda (RESERVADO)', movie: 'Wicked', image: 'https://tulink.com/imagen22.jpg' },
+      { character: 'Maleficent', movie: 'Maléfica', image: 'https://tulink.com/imagen23.jpg' },
+      { character: 'Gandalf', movie: 'El Señor de los Anillos', image: 'https://tulink.com/imagen24.jpg' }
     ]
   }
 ];

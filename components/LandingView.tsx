@@ -104,58 +104,105 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
       {/* Dresscode Gallery Modal */}
       {selectedDresscode && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8 bg-black/98 backdrop-blur-xl animate-fadeIn">
-          <div className="relative bg-[#080808] gold-border w-full max-w-6xl max-h-[95vh] overflow-y-auto shadow-2xl">
+          <div className="relative bg-gradient-to-b from-[#0A0A0A] to-[#050505] gold-border w-full max-w-7xl max-h-[95vh] overflow-y-auto shadow-2xl">
             <button 
               onClick={() => setSelectedDresscode(null)}
-              className="absolute top-6 right-6 z-10 p-2 bg-black border border-gold/30 text-gold hover:bg-gold hover:text-black transition-all rounded-full"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-3 bg-black/80 backdrop-blur border border-gold/30 text-gold hover:bg-gold hover:text-black transition-all rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:scale-110"
             >
               <X size={20} />
             </button>
 
-            <div className="p-8 sm:p-16">
-              <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b border-gold/10 pb-12">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-gold">
-                    <Star size={24} />
-                    <span className="font-cinzel text-xs tracking-[0.4em] uppercase">Inspiración Dresscode</span>
+            <div className="p-6 sm:p-12 lg:p-16">
+              {/* Header Section */}
+              <div className="flex flex-col gap-8 mb-12 pb-8 border-b border-gold/10">
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold/20 to-transparent border border-gold/30 flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+                      <Star size={32} className="text-gold" />
+                    </div>
                   </div>
-                  <h3 className="font-cinzel text-5xl text-gold-gradient uppercase font-black">{selectedDresscode.title}</h3>
+                  <div className="flex-1 space-y-3">
+                    <span className="font-cinzel text-gold/60 text-xs tracking-[0.4em] uppercase block">Inspiración Dresscode</span>
+                    <h3 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl text-gold-gradient uppercase font-black tracking-tight">
+                      {selectedDresscode.title}
+                    </h3>
+                    <p className="font-playfair italic text-white/70 text-lg sm:text-xl max-w-2xl leading-relaxed">
+                      {selectedDresscode.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-4 max-w-md md:text-right">
-                  <p className="font-playfair italic text-white/60 text-xl">
-                    {selectedDresscode.description}
+                
+                <div className="flex items-center gap-3 px-4 py-3 bg-gold/5 border border-gold/10 rounded">
+                  <Lock size={16} className="text-gold/60" />
+                  <p className="text-xs sm:text-sm text-gold/50 font-cinzel tracking-wider uppercase">
+                    Nota: Los personajes marcados como reservados no permiten duplicados
                   </p>
-                  <div className="flex items-center gap-2 justify-end text-[10px] text-gold/40 font-cinzel tracking-widest uppercase">
-                    <Lock size={12} /> Nota: Los personajes reservados no permiten duplicados
-                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Gallery Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 mb-12">
                 {selectedDresscode.examples.map((example, idx) => {
-                  const isReserved = example.character.toLowerCase().includes("glinda");
+                  const isReserved = example.character.toLowerCase().includes("reservado");
                   return (
-                    <div key={idx} className={`group space-y-4 ${isReserved ? 'relative' : ''}`}>
-                      <div className="relative aspect-[2/3] overflow-hidden gold-border bg-white/5">
+                    <div key={idx} className="group space-y-3">
+                      <div className={`relative aspect-[2/3] overflow-hidden bg-gradient-to-br from-white/5 to-transparent border transition-all duration-500 ${
+                        isReserved 
+                          ? 'border-red-900/30 shadow-[0_0_20px_rgba(127,29,29,0.2)]' 
+                          : 'border-gold/20 hover:border-gold/50 shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]'
+                      }`}>
                         <img 
                           src={example.image} 
-                          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${isReserved ? 'opacity-40 grayscale' : ''}`} 
-                          alt={example.character} 
+                          className={`w-full h-full object-cover transition-all duration-700 ${
+                            isReserved 
+                              ? 'opacity-30 grayscale' 
+                              : 'group-hover:scale-110'
+                          }`}
+                          alt={example.character}
+                          onError={(e) => {
+                            // Fallback para imágenes que no cargan
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent && !parent.querySelector('.placeholder-text')) {
+                              const placeholder = document.createElement('div');
+                              placeholder.className = 'placeholder-text absolute inset-0 flex flex-col items-center justify-center text-center p-4';
+                              placeholder.innerHTML = `
+                                <div class="w-12 h-12 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mb-3">
+                                  <svg class="w-6 h-6 text-gold/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                  </svg>
+                                </div>
+                                <span class="text-gold/40 text-[10px] font-cinzel tracking-wider uppercase">Agrega tu foto aquí</span>
+                              `;
+                              parent.appendChild(placeholder);
+                            }
+                          }}
                         />
                         {isReserved && (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-                             <Lock size={32} className="text-gold mb-2" />
-                             <span className="bg-gold text-black px-3 py-1 font-cinzel text-[8px] font-bold tracking-widest uppercase">Reservado</span>
-                             <p className="text-[10px] text-white/80 mt-2 font-cinzel leading-tight">Personaje Exclusivo<br/>Anfitriona</p>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-3 bg-black/40 backdrop-blur-sm">
+                            <div className="w-10 h-10 rounded-full bg-red-900/20 border border-red-900/30 flex items-center justify-center mb-2">
+                              <Lock size={18} className="text-red-400" />
+                            </div>
+                            <span className="bg-gradient-to-r from-red-900 to-red-800 text-white px-2 py-1 font-cinzel text-[9px] font-bold tracking-widest uppercase shadow-lg">
+                              Reservado
+                            </span>
+                            <p className="text-[9px] text-white/80 mt-2 font-cinzel leading-tight tracking-wide">
+                              Personaje<br/>Exclusivo
+                            </p>
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                        <div className={`absolute inset-0 transition-opacity duration-300 ${
+                          isReserved ? 'opacity-0' : 'bg-black/20 group-hover:opacity-0'
+                        }`}></div>
                       </div>
-                      <div>
-                        <h4 className={`font-cinzel text-lg tracking-wide uppercase ${isReserved ? 'text-white/30' : 'text-gold'}`}>
-                          {example.character}
+                      <div className="space-y-1">
+                        <h4 className={`font-cinzel text-sm sm:text-base tracking-wide uppercase leading-tight ${
+                          isReserved ? 'text-red-400/60' : 'text-gold group-hover:text-white transition-colors'
+                        }`}>
+                          {example.character.replace(' (RESERVADO)', '')}
                         </h4>
-                        <p className="text-[10px] text-white/40 font-cinzel tracking-widest uppercase flex items-center gap-2">
+                        <p className="text-[9px] sm:text-[10px] text-white/40 font-cinzel tracking-widest uppercase flex items-center gap-1.5">
                           <Play size={8} className="fill-current" /> {example.movie}
                         </p>
                       </div>
@@ -164,13 +211,14 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
                 })}
               </div>
 
-              <div className="mt-16 text-center">
-                 <button 
-                   onClick={() => setSelectedDresscode(null)}
-                   className="font-cinzel bg-gold-gradient text-black px-12 py-4 tracking-[0.2em] font-bold hover:scale-105 transition-transform uppercase"
-                 >
-                   Cerrar Galería
-                 </button>
+              {/* Footer Button */}
+              <div className="text-center pt-8 border-t border-gold/10">
+                <button 
+                  onClick={() => setSelectedDresscode(null)}
+                  className="font-cinzel bg-gold-gradient text-black px-12 py-4 tracking-[0.2em] font-bold hover:scale-105 active:scale-95 transition-transform uppercase shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+                >
+                  Cerrar Galería
+                </button>
               </div>
             </div>
           </div>
