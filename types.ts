@@ -53,5 +53,5 @@ export interface ScheduleItem {
   description: string;
 }
 
-export type ViewMode = 'landing' | 'dashboard';
+export type ViewMode = 'landing' | 'dashboard' | 'login';
 export type DashboardTab = 'guests' | 'checkin' | 'voting' | 'results';

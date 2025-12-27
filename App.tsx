@@ -5,10 +5,12 @@ import { INITIAL_AWARD_CATEGORIES, MOCK_GUESTS } from './constants';
 import LandingView from './components/LandingView';
 import DashboardView from './components/DashboardView';
 import RegistrationModal from './components/RegistrationModal';
+import AdminLogin from './components/AdminLogin';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewMode>('landing');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [guests, setGuests] = useState<Guest[]>(() => {
     const saved = localStorage.getItem('guest_list');
     return saved ? JSON.parse(saved) : MOCK_GUESTS;
@@ -64,19 +66,36 @@ const App: React.FC = () => {
     }));
   };
 
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setView('dashboard');
+  };
+
   return (
-    <div className="min-h-screen">
-      {view === 'landing' ? (
+    <div className="min-h-screen bg-[#0A0A0A]">
+      {view === 'landing' && (
         <LandingView 
           onOpenRegister={() => setIsModalOpen(true)} 
-          onEnterAdmin={() => setView('dashboard')}
+          onEnterAdmin={() => setView('login')}
           categories={categories}
         />
-      ) : (
+      )}
+
+      {view === 'login' && (
+        <AdminLogin 
+          onBack={() => setView('landing')} 
+          onLoginSuccess={handleLoginSuccess}
+        />
+      )}
+
+      {view === 'dashboard' && isAuthenticated && (
         <DashboardView 
           guests={guests} 
           categories={categories}
-          onBack={() => setView('landing')} 
+          onBack={() => {
+            setIsAuthenticated(false);
+            setView('landing');
+          }} 
           onToggleStatus={handleToggleStatus}
           onVote={handleVote}
         />
@@ -88,14 +107,6 @@ const App: React.FC = () => {
           onRegister={handleRegister} 
         />
       )}
-
-      {/* Floating View Toggle for Quick Access */}
-      <button 
-        onClick={() => setView(v => v === 'landing' ? 'dashboard' : 'landing')}
-        className="fixed bottom-6 right-6 z-50 bg-black/50 backdrop-blur-md border border-gold/30 text-gold font-cinzel text-[10px] px-4 py-2 rounded-full hover:bg-gold/10 transition-all uppercase tracking-widest"
-      >
-        Cambiar Modo: {view === 'landing' ? 'Admin' : 'Landing'}
-      </button>
     </div>
   );
 };

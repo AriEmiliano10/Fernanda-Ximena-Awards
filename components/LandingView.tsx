@@ -22,10 +22,10 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
         <div className="spotlight spotlight-left"></div>
         <div className="spotlight spotlight-right"></div>
         
-        <div className="relative z-10 max-w-4xl space-y-6">
+        <div className="relative z-10 max-w-4xl space-y-6 animate-fadeIn">
           <p className="font-cinzel text-gold text-xs sm:text-sm tracking-[0.4em] uppercase">Estás invitado a la gala de</p>
-          <h1 className="font-cinzel text-5xl sm:text-7xl font-black text-gold-gradient tracking-tight leading-none">
-            {EVENT_DETAILS.NAME.toUpperCase()}
+          <h1 className="font-cinzel text-5xl sm:text-7xl font-black text-gold-gradient tracking-tight leading-none uppercase">
+            {EVENT_DETAILS.NAME}
           </h1>
           <p className="font-playfair italic text-xl sm:text-3xl text-white/90 tracking-widest">
             {EVENT_DETAILS.HOST} &bull; {EVENT_DETAILS.SUBTITLE}
@@ -34,7 +34,7 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
             <button 
               onClick={onOpenRegister}
-              className="shine-effect bg-gold-gradient text-black font-cinzel font-bold py-4 px-10 tracking-[0.2em] hover:scale-105 transition-transform"
+              className="shine-effect bg-gold-gradient text-black font-cinzel font-bold py-4 px-10 tracking-[0.2em] hover:scale-105 transition-transform shadow-[0_0_20px_rgba(212,175,55,0.3)]"
             >
               CONFIRMAR ASISTENCIA
             </button>
@@ -132,7 +132,6 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {/* FIX: Map over selectedDresscode.examples instead of selectedDresscode directly */}
                 {selectedDresscode.examples.map((example, idx) => {
                   const isReserved = example.character.toLowerCase().includes("glinda");
                   return (
@@ -193,8 +192,8 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {categories.map(cat => (
-              <div key={cat.id} className="p-8 border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent hover:border-gold/30 transition-all">
-                <span className="text-4xl mb-4 block">{cat.icon}</span>
+              <div key={cat.id} className="p-8 border border-gold/10 bg-gradient-to-br from-gold/5 to-transparent hover:border-gold/30 transition-all group">
+                <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform">{cat.icon}</span>
                 <h4 className="font-cinzel text-gold text-lg mb-2">{cat.name}</h4>
                 <p className="text-[10px] text-white/30 tracking-widest uppercase">Nominación Abierta</p>
               </div>
@@ -204,111 +203,101 @@ const LandingView: React.FC<Props> = ({ onOpenRegister, onEnterAdmin, categories
       </section>
 
       {/* Schedule Section */}
-      <section id="itinerario" className="py-24 max-w-3xl mx-auto px-6">
-        <h2 className="font-cinzel text-3xl italic text-center mb-16 tracking-widest uppercase">Itinerario de la Gala</h2>
-        <div className="space-y-12 relative before:absolute before:left-[11px] before:top-4 before:bottom-0 before:w-px before:bg-gold/20">
+      <section id="itinerario" className="py-32 max-w-2xl mx-auto px-6">
+        <h2 className="font-cinzel text-3xl text-center mb-24 tracking-[0.5em] uppercase text-white/90">
+          Itinerario de la Gala
+        </h2>
+        
+        <div className="space-y-16 relative before:absolute before:left-[11px] before:top-4 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-gold/50 before:via-gold/20 before:to-transparent">
           {SCHEDULE.map((item, i) => (
-            <div key={i} className="relative pl-10">
-              <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full bg-gold border-4 border-black shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
-              <div className="font-cinzel text-gold text-xl mb-1">{item.time}</div>
-              <h3 className="font-cinzel text-2xl mb-2">{item.activity}</h3>
-              <p className="text-white/40 text-sm font-light leading-relaxed">{item.description}</p>
+            <div key={i} className="relative pl-12 group">
+              <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full bg-black border-2 border-gold/40 flex items-center justify-center shadow-[0_0_15px_rgba(191,149,63,0.3)] group-hover:shadow-[0_0_20px_rgba(191,149,63,0.6)] group-hover:border-gold transition-all duration-500">
+                <div className="w-2 h-2 rounded-full bg-gold/60 group-hover:bg-gold transition-colors"></div>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="font-cinzel text-gold/80 text-lg tracking-widest mb-1 group-hover:text-gold transition-colors duration-500">
+                  {item.time}
+                </div>
+                <h3 className="font-cinzel text-2xl sm:text-3xl font-bold uppercase tracking-[0.1em] text-white group-hover:text-gold-gradient transition-all duration-500">
+                  {item.activity}
+                </h3>
+                <p className="text-white/40 text-sm sm:text-base font-light leading-relaxed max-w-lg">
+                  {item.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Venue / Location Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
+      {/* Venue Section */}
+      <section className="relative py-32 px-6 overflow-hidden border-t border-gold/10">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=2069&auto=format&fit=crop')] bg-cover bg-fixed bg-center opacity-20 grayscale"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-[#0A0A0A]"></div>
-        
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <div className="gold-border bg-black/40 backdrop-blur-xl p-12 sm:p-20 flex flex-col items-center text-center space-y-8">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-12 bg-gold"></div>
-              <span className="font-cinzel text-gold text-sm tracking-[0.5em] uppercase">La Sede</span>
-              <div className="h-px w-12 bg-gold"></div>
-            </div>
-            
-            <h2 className="font-cinzel text-6xl sm:text-8xl text-gold-gradient font-black uppercase tracking-tighter animate-pulse">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+            <span className="font-cinzel text-gold text-sm tracking-[0.5em] uppercase">The Location</span>
+            <h2 className="font-cinzel text-6xl sm:text-8xl text-gold-gradient font-black uppercase tracking-tighter">
               {EVENT_DETAILS.LOCATION}
             </h2>
-            
-            <p className="font-playfair italic text-white/80 text-2xl sm:text-4xl max-w-3xl leading-snug">
+            <p className="font-playfair italic text-white/80 text-2xl sm:text-4xl max-w-3xl mx-auto leading-snug">
               Luces, cámara y el máximo hype. El spot oficial donde vamos a hacer historia y celebrar la noche más icónica del año.
             </p>
-            
-            <div className="pt-8 w-full max-w-md">
-              <a 
-                href={EVENT_DETAILS.MAP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shine-effect block w-full bg-gold-gradient text-black font-cinzel font-bold py-6 px-10 tracking-[0.3em] hover:scale-105 transition-transform flex items-center justify-center gap-4 group"
-              >
-                <Navigation size={20} className="group-hover:rotate-45 transition-transform" />
-                CÓMO LLEGAR
+            <div className="pt-8">
+              <a href={EVENT_DETAILS.MAP_URL} target="_blank" className="inline-flex items-center gap-4 border border-gold/30 px-12 py-5 font-cinzel tracking-widest hover:bg-gold/10 transition-all uppercase">
+                <Navigation size={18}/> Ver Mapa Oficial
               </a>
-              <p className="mt-6 text-gold/40 font-cinzel text-[10px] tracking-[0.2em] uppercase leading-relaxed max-w-xs mx-auto">
-                Calle Kansas 58, Nápoles, Benito Juárez, 03810 Ciudad de México, CDMX
-              </p>
             </div>
-          </div>
         </div>
       </section>
 
-      {/* Ticket CTA Section */}
-      <section className="py-24 px-6 bg-[#080808]">
-        <div className="max-w-4xl mx-auto p-1 bg-black gold-border rotate-2 hover:rotate-0 transition-transform shadow-2xl">
-          <div className="bg-black/50 p-8 sm:p-12 flex flex-col md:flex-row gap-12 items-center">
-            <div className="flex-1 space-y-4">
-              <div className="text-gold font-cinzel text-xs tracking-widest flex items-center gap-2">
-                <Ticket size={16} /> TICKET DE ACCESO
-              </div>
-              <h3 className="font-cinzel text-3xl sm:text-4xl uppercase">Gala Exclusiva</h3>
-              <p className="text-white/40 text-sm leading-relaxed">
-                Presenta tu código QR en la entrada para validar tu nominación y acceso a las votaciones. El staff oficial te asignará tu mesa.
-              </p>
-              <div className="flex gap-4 pt-4">
-                <div className="p-4 bg-white/5 border border-white/10 text-center min-w-[100px]">
-                   <span className="text-[10px] text-gold/60 block mb-1">NUM.</span>
-                   <span className="font-cinzel text-2xl">???</span>
-                </div>
-                <div className="p-4 bg-white/5 border border-white/10 text-center flex-1">
-                   <span className="text-[10px] text-gold/60 block mb-1">NOMINADO/A</span>
-                   <span className="font-cinzel text-2xl tracking-tight">TÚ AQUÍ</span>
-                </div>
-              </div>
+      {/* Redesigned Footer Section - REFINED FOR MAXIMUM LEGIBILITY */}
+      <footer className="relative py-40 text-center bg-black overflow-hidden border-t border-gold/10">
+        <div className="max-w-4xl mx-auto px-6 space-y-20">
+          
+          <h4 className="font-cinzel text-3xl sm:text-5xl text-white tracking-[0.4em] uppercase font-black animate-fadeIn">
+            ¿ESTÁS LISTO PARA SER LA ESTRELLA?
+          </h4>
+          
+          <div className="flex justify-center">
+            <button 
+              onClick={onOpenRegister}
+              className="relative group py-7 px-20 bg-[#080808] border border-gold/40 shadow-[0_0_40px_rgba(191,149,63,0.15)] hover:shadow-[0_0_60px_rgba(191,149,63,0.3)] hover:border-gold transition-all duration-700 active:scale-95 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span className="relative z-10 font-cinzel text-gold/90 group-hover:text-gold text-base sm:text-2xl tracking-[0.5em] font-black uppercase transition-all duration-500">
+                SÍ, CONFIRMO MI ASISTENCIA
+              </span>
+              <div className="absolute -inset-1 bg-gold/5 blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </button>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 pt-10">
+            <div className="flex items-center gap-3 text-white/50 font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase group cursor-default hover:text-white transition-colors">
+              <MapPin size={16} className="text-gold/60 group-hover:text-gold transition-colors"/> 
+              <span>{EVENT_DETAILS.LOCATION}</span>
             </div>
-            <div className="w-48 h-48 bg-white/10 border-2 border-dashed border-gold/30 flex items-center justify-center text-center p-4">
-              <span className="font-cinzel text-white/20 text-xs text-center">QR DISPONIBLE TRAS REGISTRO</span>
+            <div className="flex items-center gap-3 text-white/50 font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase group cursor-default hover:text-white transition-colors">
+              <Star size={16} className="text-gold/60 group-hover:text-gold transition-colors"/> 
+              <span>ESTRICTO DRESSCODE</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/50 font-cinzel text-xs sm:text-sm tracking-[0.4em] uppercase group cursor-default hover:text-white transition-colors">
+              <Ticket size={16} className="text-gold/60 group-hover:text-gold transition-colors"/> 
+              <span>RSVP</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="py-16 text-center border-t border-gold/10 px-6">
-        <h4 className="font-cinzel text-xl text-gold mb-8 tracking-[0.2em] uppercase">¿Estás listo para ser la estrella?</h4>
-        <button 
-          onClick={onOpenRegister}
-          className="shine-effect bg-gold text-black font-cinzel font-bold py-4 px-10 tracking-[0.2em] hover:scale-105 transition-transform mb-12"
-        >
-          SÍ, CONFIRMO MI ASISTENCIA
-        </button>
-        <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 text-[10px] text-white/30 font-cinzel tracking-[0.3em] uppercase">
-          <a href={EVENT_DETAILS.MAP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 hover:text-gold transition-colors">
-            <MapPin size={12}/> {EVENT_DETAILS.LOCATION}
-          </a>
-          <span className="flex items-center justify-center gap-2"><Star size={12}/> Estricto Dresscode</span>
-          <span className="flex items-center justify-center gap-2"><Ticket size={12}/> RSVP</span>
+          <div className="pt-24 opacity-30 hover:opacity-100 transition-opacity">
+            <button 
+              onClick={onEnterAdmin}
+              className="font-cinzel text-[9px] sm:text-[11px] text-white/30 hover:text-gold transition-all tracking-[0.6em] uppercase cursor-pointer"
+            >
+              SISTEMA DE GESTIÓN ADMINISTRATIVA
+            </button>
+          </div>
         </div>
-        <p 
-          className="mt-12 text-white/10 font-cinzel text-[8px] cursor-pointer hover:text-gold transition-colors"
-          onClick={onEnterAdmin}
-        >
-          SISTEMA DE GESTIÓN ADMINISTRATIVA
-        </p>
+
+        {/* Cinematic Backdrop Glow Line */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent blur-[1px]"></div>
       </footer>
     </div>
   );
